@@ -1,0 +1,26 @@
+<html>
+ <head>
+  <title>task2</title>
+  </head>
+  <body>
+  <script>
+ var x0=window.prompt("Please input x0","");
+ var y0=window.prompt("Please input y0","");
+ var z0=window.prompt("Please input z0","");
+ var x1=window.prompt("Please input x1","");
+ var y1=window.prompt("Please input y1","");
+ var z1=window.prompt("Please input z1","");
+ var x2=window.prompt("Please input x2","");
+ var y2=window.prompt("Please input y2","");
+ var z2=window.prompt("Please input z2","");
+ var a=Math.sqrt((x0-x1)*(x0-x1)+(y0-y1)*(y0-y1)+(z0-z1)*(z0-z1))
+ var b=Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)+(z2-z1)*(z2-z1))
+ var c=Math.sqrt((x2-x0)*(x2-x0)+(y2-y0)*(y2-y0)+(z2-z0)*(z2-z0))
+
+    var p=(a+b+c)/2
+    var S=Math.sqrt(p*(p-a)*(p-b)*(p-c))
+    
+    document.write(S);
+  </script>
+  </body>
+  </html>
