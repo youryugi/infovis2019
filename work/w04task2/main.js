@@ -12,14 +12,23 @@ function main()
     var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
     camera.position.set( 0, 0, 5 );
     scene.add( camera );
-function guang()
-    {var light = new THREE.PointLight( 0xffffff );
-light.position.set( 1, 1, 1 );
-scene.add( light );}
+    function guang()
+    {var light = new THREE.SpotLight(0xffffff)
+    light.position.set(0, -3, 4)
+    light.target = floor; // 投射方向指向地板
+    light.castShadow = true; // 用于产生阴影
+    scene.add(light)}
     function wenli()
-    {var material = new THREE.MeshLambertMaterial({
-color: 0xffffff
-});}
+    {cube.castShadow = true; 
+    // 对floor接受阴影
+    floor.receiveShadow = true;
+    // 光源设置
+    light.castShadow = true;
+    // 光源的阴影设置
+    light.shadow.mapSize.width = 512;  // default
+    light.shadow.mapSize.height = 512; // default     light.shadow.camera.near = 0.5;       // default
+    light.shadow.camera.far = 500      // default
+        }
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize( width, height );
     document.body.appendChild( renderer.domElement );
