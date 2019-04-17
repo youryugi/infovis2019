@@ -14,7 +14,7 @@ function main()
     scene.add( camera );
     function guang()
     {var light = new THREE.SpotLight(0xffffff)
-    light.position.set(0, -3, 4)
+    light.position.set(1, 1, 1)
     light.target = floor; // 投射方向指向地板
     light.castShadow = true; // 用于产生阴影
     scene.add(light)}
@@ -25,9 +25,9 @@ function main()
     // 光源设置
     light.castShadow = true;
     // 光源的阴影设置
-    light.shadow.mapSize.width = 512;  // default
-    light.shadow.mapSize.height = 512; // default     light.shadow.camera.near = 0.5;       // default
-    light.shadow.camera.far = 500      // default
+    //light.shadow.mapSize.width = 512;  // default
+    //light.shadow.mapSize.height = 512; // default     light.shadow.camera.near = 0.5;       // default
+    //light.shadow.camera.far = 500      // default
         }
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize( width, height );
