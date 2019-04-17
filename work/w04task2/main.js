@@ -12,7 +12,12 @@ function main()
     var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
     camera.position.set( 0, 0, 5 );
     scene.add( camera );
-
+var light = new THREE.PointLight( 0xffffff );
+light.position.set( 1, 1, 1 );
+scene.add( light );
+    var material = new THREE.MeshLambertMaterial({
+color: 0xffffff
+});
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize( width, height );
     document.body.appendChild( renderer.domElement );
