@@ -1,0 +1,176 @@
+<html>
+    <head>
+	<title>Final task</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/style2.css" />
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<script src="js/modernizr.custom.63321.js">
+
+	</script>
+    </head>
+    <style>
+      h2{color:black;}
+      h4{color:black;}
+      </style>
+      
+    <body >
+      <script>
+	document.write("<h2>        Introduction</h2><br />");
+	document.write("<h4>        1.バーのカーソルを移動させて Calculate ボタンをクリックすると isovalue が変更される．isovalue の値は 0~254 までの値となっている.</h4><br />");
+	document.write("<h4>        2.入力欄の上から x 軸，y 軸，z 軸に対応しており，数値を入力後に Move ボ タンをクリックするとその数値に応じて lobster の位置が動く．Reset ボタ ンをクリックすると元の場所に戻る. </h4><br />");
+	document.write("<h4>        3.material の名称の部分をクリックすると，Basic，Lambert，Phong の 3 種 類の material が表示される．その中のどれかを選ぶと lobster の material が変更される．</h4><br />");
+	document.write("<h4>        4.種類の colormap があり，その中の 1 つをクリックするとその colormap を用いた lobster が表示される.</h4><br />");
+	document.write("<h4>        5.3つのベクトルに対して 0~1 までの 0.1 刻みの項目を選択し，Slice ボタン をクリックすると，その角度に応じた断面図を表示する．下の Color で colormap を選択すると④と同様にその colormap に応じた色に変更される．</h4><br />");
+	    </script>
+    <div  id="container1">
+    	<div id="container2">
+	    
+	  	<div style="width:80%;float:left;" id="target">
+	  		
+	  	</div>
+	  	<div id="col2" >
+	    
+			<ul class="tabs" style="height:100%">
+		    <li>
+		        <input type="radio" name="tabs" id="tab1" checked />
+		        <label for="tab1">Isovalue</label>
+		        <div id="tab-content1" class="tab-content">
+					<span>Change isovalue (0~254)</span>
+				
+					<input type="range" name="isovalue" min="0" max="254" step="1" value="100" id="iso">
+					<input type="button" class="btn btn-default" value="Calculate" onclick="calculate()">
+						
+						
+					<span>Move position(x,y,z)</span>
+					<input type="text" name="movex" id="movex" min="0" max="254" value="0">
+					<input type="text" name="movey" id="movey" min="0" max="254" value="0">	
+					<input type="text" name="movez" id="movez" min="0" max="254" value="0">
+						  <input type="button"  value="Move" onclick="move()">
+					  	  <input type="button"  value="Reset" onclick="reset()">
+						
+					<br /><hr />
+					<fieldset style="margin-top:5%; padding:10px;">
+					  <legend>Material:</legend>
+					  <div class="fleft">
+					  <form action="" id="form">
+						<select id="cd-dropdown" class="cd-select" name="first">
+							
+							<option value="1" >MeshBasicMaterial</option>
+							<option value="2" >MeshLambertMaterial</option>
+							<option value="3" selected>MeshPhongMaterial</option>
+							
+						</select>
+					</form>
+					 </div>
+					 </fieldset>
+					 <fieldset style="margin-top:5%; padding:10px;">
+					  <legend>Color:</legend>
+						 <span><input type="radio" style="width:60%;margin-bottom:5%; name="Basic">Transfer function </span>
+						 <span id="colormaps" style="width:60%;margin-bottom:8%;">
+						 	<img src="img/colormap1.jpg" style="margin-left:14%;width:100%;height:2%;margin-bottom:5%;" onclick="transfer(1,2)"><br>
+						 	<img src="img/colormap2.jpg" style="width:100%;height:2%;margin-bottom:5%;" onclick="transfer(2,2)"><br>
+						 	<img src="img/colormap3.jpg" style="width:100%;height:2%;margin-bottom:5%;" onclick="transfer(3,2)"><br>
+						 	<img src="img/colormap4.jpg" style="width:100%;height:2%;" onclick="transfer(4,2)"><br>
+						 </span>
+
+			
+			 
+				 
+			
+	        </li>
+			
+		
+			
+		    <li>
+		        <input type="radio" name="tabs" id="tab2" />
+		        <label for="tab2">Slice</label>
+		        <div id="tab-content2" class="tab-content">
+		          <p>Choose normal vector</p>
+		           <select class="norm" id="normal1">
+		          	<option>0</option>
+		          	<option>0.1</option>
+		          	<option>0.2</option>
+		          	<option>0.3</option>
+		          	<option>0.4</option>
+		          	<option>0.5</option>
+		          	<option>0.6</option>
+		          	<option>0.7</option>
+		          	<option>0.8</option>
+		          	<option>0.9</option>
+		          	<option selected>1</option>
+		          </select>
+		          <select class="norm" id="normal2">
+		          	
+		          	<option>0</option>
+		          	<option>0.1</option>
+		          	<option>0.2</option>
+		          	<option>0.3</option>
+		          	<option>0.4</option>
+		          	<option>0.5</option>
+		          	<option>0.6</option>
+		          	<option>0.7</option>
+		          	<option>0.8</option>
+		          	<option>0.9</option>
+		          	<option selected>1</option>
+		          </select>
+		          </select>
+		          <select class="norm" id="normal3">
+		          
+		          	<option>0</option>
+		          	<option >0.1</option>
+		          	<option>0.2</option>
+		          	<option>0.3</option>
+		          	<option>0.4</option>
+		          	<option>0.5</option>
+		          	<option>0.6</option>
+		          	<option>0.7</option>
+		          	<option>0.8</option>
+		          	<option>0.9</option>
+		          	<option selected>1</option>
+		          </select>
+
+		          <input type="button"  value="Slice" onclick="slice()">
+
+		          <fieldset style="margin-top:5%; padding:10px;">
+					  <legend>Color:</legend>
+						 <span><input type="radio" style="width:60%;margin-bottom:5%; name="Basic"><span id="trf">Transfer function </span>
+						 <span id="colormaps1" style="width:60%;margin-bottom:8%;">
+						 	<img src="img/colormap1.jpg" style="margin-left:15%;width:100%;height:2%;margin-bottom:5%;" onclick="transfer(1,2)"><br>
+						 	<img src="img/colormap2.jpg" style="width:100%;height:2%;margin-bottom:5%;" onclick="transfer(2,2)"><br>
+						 	<img src="img/colormap3.jpg" style="width:100%;height:2%;margin-bottom:5%;" onclick="transfer(3,2)"><br>
+						 	<img src="img/colormap4.jpg" style="width:100%;height:2%;" onclick="transfer(4,2)"><br>
+
+						 </span>
+						 <input type="color" id="colorinput"><span id="lbl">Set color</span>
+					 </fieldset>
+
+					 
+					 
+		        </div>
+		    </li>
+		   
+		</ul>
+	  	</div>
+	  	</div>
+ 	</div>
+	<script src="js/Bounds.js"></script>
+	<script src="js/three.min.js"></script>
+	<script src="https://threejs.org/examples/js/math/Lut.js"></script>
+	<script src="js/TrackballControls.js"></script>
+	<script src="https://naohisas.github.io/KVS.js/Build/KVS.min.js"></script>
+	<script src="https://naohisas.github.io/KVS.js/Build/KVS2THREE.min.js"></script>
+	<script src="https://naohisas.github.io/KVS.js/Source/KVSLobsterData.js"></script>
+	<script src="js/jquery.min.js"></script>
+	
+		<script type="text/javascript" src="js/jquery.dropdown.js"></script>
+		<script type="text/javascript" src="js/slice_three.js"></script>
+	<script src="js/Isosurfaces.js"></script>
+	<script src="js/SlicePlane.js"></script>
+	<script src="js/main.js"></script>
+
+	<script>
+	 main(1,178);
+	</script>
+    </body>
+</html>
